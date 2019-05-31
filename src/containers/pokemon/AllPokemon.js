@@ -18,6 +18,7 @@ class AllPokemon extends PureComponent {
 
   render() {
     if(this.props.loading) return <h1>Loading...</h1>;
+    console.log(this.props.pokemons);
     return <PokeDeck pokemons={this.props.pokemons} />;
   }
 }
