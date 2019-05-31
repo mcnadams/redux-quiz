@@ -21,13 +21,13 @@ function PokeDeck({ pokemons }) {
 }
 
 PokeDeck.propTypes = {
-  pokemons: PropTypes.shape({
+  pokemons: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     pokemon: PropTypes.string.isRequired,
     color_1: PropTypes.string.isRequired,
     color_2: PropTypes.string.isRequired,
     url_image: PropTypes.string.isRequired,
-  })
+  }))
 };
 
 export default PokeDeck;

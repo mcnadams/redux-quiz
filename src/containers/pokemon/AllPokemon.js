@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPokemons, getPokemonsLoading, getPokemonsError } from '../../selectors/pokemonSelectors';
 import PokeDeck from '../../components/pokemon/PokeDeck';
-import { fetchPokemons } from '../actions/pokemonsActions';
+import { fetchPokemons } from '../../actions/pokemonsActions';
 
 class AllPokemon extends PureComponent {
   static propTypes = {
