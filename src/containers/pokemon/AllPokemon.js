@@ -12,13 +12,16 @@ class AllPokemon extends PureComponent {
     fetch: PropTypes.func.isRequired
   }
 
+  state = {
+    page: 2
+  }
+
   componentDidMount() {
-    this.props.fetch();
+    this.props.fetch(this.state.page);
   }
 
   render() {
     if(this.props.loading) return <h1>Loading...</h1>;
-    console.log(this.props.pokemons);
     return <PokeDeck pokemons={this.props.pokemons} />;
   }
 }
@@ -30,8 +33,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetch()  {
-    dispatch(fetchPokemons());
+  fetch(page)  {
+    dispatch(fetchPokemons(page));
   }
 });
 

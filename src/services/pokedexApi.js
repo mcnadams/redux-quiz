@@ -1,5 +1,5 @@
-export default function getPokemon() {
-  return fetch('http://alchemy-pokedex.herokuapp.com/api/pokedex')
+export default function getPokemon(page = 1) {
+  return fetch(`http://alchemy-pokedex.herokuapp.com/api/pokedex?page=${page}`)
     .then(res => ([res.ok, res.json()]))
     .then(([ok, pokemons]) => {
       if(!ok) throw 'Unable to fetch characters';
