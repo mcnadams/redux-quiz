@@ -22,7 +22,15 @@ class AllPokemon extends PureComponent {
 
   render() {
     if(this.props.loading) return <h1>Loading...</h1>;
-    return <PokeDeck pokemons={this.props.pokemons} />;
+    return (
+    <>
+      <section>
+        <button>Previous Page</button>
+        <button>Next Page</button>
+      </section>
+      <PokeDeck pokemons={this.props.pokemons} />
+    </>
+    );
   }
 }
 
