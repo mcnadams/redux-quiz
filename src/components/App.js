@@ -6,7 +6,7 @@ import {
   Link
 } from 'react-router-dom';
 import AllPokemon from '../containers/pokemon/AllPokemon';
-// import PokemonById from '../containers/pokemon/PokemonById';
+import PokemonById from '../containers/pokemon/PokemonById';
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
       <Link to='/'>Home</Link>
       <Switch>
         <Route exact path='/' component={AllPokemon} />
-        {/* <Route path='/:id' component={PokemonById} /> */}
+        <Route path='/:id' component={PokemonById} />
       </Switch>
     </Router>
   );
