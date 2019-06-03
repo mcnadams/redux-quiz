@@ -13,18 +13,17 @@ class AllPokemon extends PureComponent {
     pokemons: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired,
     fetch: PropTypes.func.isRequired,
-    fetchPagingInfo: PropTypes.func.isRequired
+    fetchPagingInfo: PropTypes.func.isRequired,
+    totalPages: PropTypes.number.isRequired
   }
 
   state = {
-    page: 1,
-    totalPages: this.props.fetchPagingInfo()
+    page: 1
   }
 
   componentDidMount() {
     this.props.fetch(this.state.page);
-    console.log(this.props.fetchPagingInfo());
-    this.setState({ totalPages: this.props.fetchPagingInfo() });
+    this.props.fetchPagingInfo();
   }
 
   render() {
@@ -32,7 +31,7 @@ class AllPokemon extends PureComponent {
     return (
     <>
       <section>
-        <p>Page {this.state.page} of {this.state.totalPages}</p>
+        <p>Page {this.state.page} of {this.props.totalPages}</p>
         <button>Previous Page</button>
         <button>Next Page</button>
       </section>
