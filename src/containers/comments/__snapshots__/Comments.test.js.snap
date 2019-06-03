@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comments component renders Comments 1`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <Comment
+      comment="Comments"
+    />
+  </li>
+  <li
+    key="1"
+  >
+    <Comment
+      comment="commentsss"
+    />
+  </li>
+</ul>
+`;
