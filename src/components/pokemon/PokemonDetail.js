@@ -1,17 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CreateComment from '../../containers/comments/CreateComment';
+import CommentsById from '../../containers/comments/CommentsById';
 
 function PokemonDetail({ pokemon }) {
   return (
-    <section>
-      <h1>{pokemon.pokemon}</h1>
-      <img src={pokemon.url_image} />
-      <p>Height: {pokemon.height}</p>
-      <p>Weight: {pokemon.weight}</p>
-      <p>Base Experience: {pokemon.base_experience}</p>
-      <p>Attack: {pokemon.attack}</p>
-      <p>Defense: {pokemon.defense}</p>
-    </section>
+    <>
+      <section>
+        <h1>{pokemon.pokemon}</h1>
+        <img src={pokemon.url_image} />
+        <p>Height: {pokemon.height}</p>
+        <p>Weight: {pokemon.weight}</p>
+        <p>Base Experience: {pokemon.base_experience}</p>
+        <p>Attack: {pokemon.attack}</p>
+        <p>Defense: {pokemon.defense}</p>
+      </section>
+      <section>
+        <CreateComment id={pokemon._id} />
+        <CommentsById id={pokemon._id} />
+      </section>
+    </>
   );
 }
 

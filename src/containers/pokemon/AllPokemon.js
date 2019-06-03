@@ -18,7 +18,7 @@ class AllPokemon extends PureComponent {
   }
 
   state = {
-    page: 40
+    page: 1
   }
 
   componentDidMount() {
