@@ -18,10 +18,8 @@ export function getPokemonPaging() {
       return pokemons;
     })
     .then(results => {
-      return {
-        count: results.count,
-        perPage: results.perPage
-      };
+      const totalPages = Math.ceil(results.count / results.perPage);
+      return totalPages;
     });
 }
 

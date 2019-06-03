@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getPokemons, getPokemonsLoading, getPokemonsError, getPages } from '../../selectors/pokemonSelectors';
+import { getPokemons, getPokemonsLoading, getPokemonsError } from '../../selectors/pokemonSelectors';
+import { getPaging } from '../../selectors/pagingSelectors';
 import PokeDeck from '../../components/pokemon/PokeDeck';
 import { fetchPokemons } from '../../actions/pokemonsActions';
+import { fetchPages } from '../../actions/pokemonPagingActions';
 
 
 class AllPokemon extends PureComponent {
@@ -11,15 +13,18 @@ class AllPokemon extends PureComponent {
     pokemons: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired,
     fetch: PropTypes.func.isRequired,
-    totalPages: PropTypes.number.isRequired
+    fetchPagingInfo: PropTypes.func.isRequired
   }
 
   state = {
-    page: 1
+    page: 1,
+    totalPages: this.props.fetchPagingInfo()
   }
 
   componentDidMount() {
     this.props.fetch(this.state.page);
+    console.log(this.props.fetchPagingInfo());
+    this.setState({ totalPages: this.props.fetchPagingInfo() });
   }
 
   render() {
@@ -27,7 +32,7 @@ class AllPokemon extends PureComponent {
     return (
     <>
       <section>
-        <p>Page {this.state.page} of {this.props.totalPages}</p>
+        <p>Page {this.state.page} of {this.state.totalPages}</p>
         <button>Previous Page</button>
         <button>Next Page</button>
       </section>
@@ -41,12 +46,15 @@ const mapStateToProps = state => ({
   pokemons: getPokemons(state),
   loading: getPokemonsLoading(state),
   error: getPokemonsError(state),
-  totalPages: 2 || getPages(state)
+  totalPages: getPaging(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   fetch(page)  {
     dispatch(fetchPokemons(page));
+  },
+  fetchPagingInfo() {
+    dispatch(fetchPages());
   }
 });
 
