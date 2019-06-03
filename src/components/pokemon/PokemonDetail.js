@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import CreateComment from '../../containers/comments/CreateComment';
 import CommentsById from '../../containers/comments/CommentsById';
 
 function PokemonDetail({ pokemon }) {
   return (
     <>
+      <Link to='/'>Home</Link>
       <section>
         <h1>{pokemon.pokemon}</h1>
         <img src={pokemon.url_image} />

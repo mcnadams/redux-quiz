@@ -11,7 +11,7 @@ import PokemonById from '../containers/pokemon/PokemonById';
 export default function App() {
   return (
     <Router>
-      <Link to='/'>Home</Link>
+      <h1>Welcome to Pokedex</h1>
       <Switch>
         <Route exact path='/' component={AllPokemon} />
         <Route path='/:id' component={PokemonById} />
