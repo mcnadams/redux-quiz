@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PokeDeck component renders PokeDeck 1`] = `
+<ul
+  style={
+    Object {
+      "display": "flex",
+      "flexWrap": "wrap",
+    }
+  }
+>
+  <li
+    key="2"
+    style={
+      Object {
+        "backgroundColor": "#f0987f",
+        "border": "1px solid black",
+        "borderRadius": "10px",
+        "listStyleType": "none",
+        "margin": "5px",
+      }
+    }
+  >
+    <Pokemon
+      pokemon={
+        Object {
+          "_id": "2",
+          "color_1": "#f0987f",
+          "color_2": "NA",
+          "pokemon": "bob",
+          "url_image": "/path",
+        }
+      }
+      styles={
+        Object {
+          "width": "80%",
+        }
+      }
+    />
+  </li>
+</ul>
+`;
