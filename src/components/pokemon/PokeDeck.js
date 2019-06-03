@@ -12,8 +12,8 @@ function PokeDeck({ pokemons }) {
         'listStyleType': 'none',
         'margin': '5px',
         'border': '1px solid black',
-        'border-radius': '10px',
-        'background-color': color
+        'borderRadius': '10px',
+        'backgroundColor': color
       }}>
         <Pokemon pokemon={pokemon} styles={{ 'width': '80%' }}/>
       </li>
