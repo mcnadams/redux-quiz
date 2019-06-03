@@ -18,12 +18,24 @@ class AllPokemon extends PureComponent {
   }
 
   state = {
-    page: 1
+    page: 40
   }
 
   componentDidMount() {
     this.props.fetch(this.state.page);
     this.props.fetchPagingInfo();
+  }
+
+  prevPage = () => {
+    const currPage = this.state.page;
+    this.setState({ page: currPage - 1 });
+    this.props.fetch(currPage - 1);
+  }
+
+  nextPage = () => {
+    const currPage = this.state.page;
+    this.setState({ page: currPage + 1 });
+    this.props.fetch(currPage + 1);
   }
 
   render() {
@@ -32,8 +44,8 @@ class AllPokemon extends PureComponent {
     <>
       <section>
         <p>Page {this.state.page} of {this.props.totalPages}</p>
-        <button>Previous Page</button>
-        <button>Next Page</button>
+        <button onClick={() => this.prevPage()} disabled={this.state.page <= 1}>Previous Page</button>
+        <button onClick={() => this.nextPage()} disabled={this.state.page >= this.props.totalPages}>Next Page</button>
       </section>
       <PokeDeck pokemons={this.props.pokemons} />
     </>
