@@ -21,34 +21,43 @@ class AllPokemon extends PureComponent {
     page: 1
   }
 
-  componentDidMount() {
+  // since you do the same fetch a bunch
+  // its nice to create a function here.
+  fetch = () => {
     this.props.fetch(this.state.page);
+  }
+
+  componentDidMount() {
     this.props.fetchPagingInfo();
+    this.fetch();
   }
 
   prevPage = () => {
     const currPage = this.state.page;
-    this.setState({ page: currPage - 1 });
-    this.props.fetch(currPage - 1);
+    this.setState({ page: currPage - 1 }, () => {
+      // fetch after the page updates in state
+      this.fetch();
+    });
   }
 
   nextPage = () => {
     const currPage = this.state.page;
-    this.setState({ page: currPage + 1 });
-    this.props.fetch(currPage + 1);
+    this.setState({ page: currPage + 1 }, () => {
+      this.fetch();
+    });
   }
 
   render() {
-    if(this.props.loading) return <h1>Loading...</h1>;
+    if (this.props.loading) return <h1>Loading...</h1>;
     return (
-    <>
-      <section>
-        <p>Page {this.state.page} of {this.props.totalPages}</p>
-        <button onClick={() => this.prevPage()} disabled={this.state.page <= 1}>Previous Page</button>
-        <button onClick={() => this.nextPage()} disabled={this.state.page >= this.props.totalPages}>Next Page</button>
-      </section>
-      <PokeDeck pokemons={this.props.pokemons} />
-    </>
+      <>
+        <section>
+          <p>Page {this.state.page} of {this.props.totalPages}</p>
+          <button onClick={() => this.prevPage()} disabled={this.state.page <= 1}>Previous Page</button>
+          <button onClick={() => this.nextPage()} disabled={this.state.page >= this.props.totalPages}>Next Page</button>
+        </section>
+        <PokeDeck pokemons={this.props.pokemons} />
+      </>
     );
   }
 }
@@ -61,7 +70,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetch(page)  {
+  fetch(page) {
     dispatch(fetchPokemons(page));
   },
   fetchPagingInfo() {
@@ -73,4 +82,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(AllPokemon);
-
