@@ -33,16 +33,16 @@ class AllPokemon extends PureComponent {
   }
 
   prevPage = () => {
-    const currPage = this.state.page;
-    this.setState({ page: currPage - 1 }, () => {
+    // make sure to use an arrow function when updating state
+    // that depends on previous state
+    this.setState(state => ({ page: state.page - 1 }), () => {
       // fetch after the page updates in state
       this.fetch();
     });
   }
 
   nextPage = () => {
-    const currPage = this.state.page;
-    this.setState({ page: currPage + 1 }, () => {
+    this.setState(state => ({ page: state.page + 1 }), () => {
       this.fetch();
     });
   }
